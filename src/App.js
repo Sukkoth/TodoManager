@@ -179,12 +179,12 @@ const App = () => {
                         </h4>
                     )}
 
-                    <div className="d-block text-right card-footer">
+                    {/* <div className="d-block text-right card-footer">
                         <button className="mr-2 btn btn-link btn-sm">
                             Cancel
                         </button>
                         <button className="btn btn-primary">Add Task</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <NotificationContainer />
