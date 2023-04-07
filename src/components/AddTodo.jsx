@@ -24,7 +24,7 @@ const AddTodo = (props) => {
     return (
         <form onSubmit={handleCreateTodo}>
             <div
-                className="form-group"
+                className="form-group d-flex flex-column align-items-end justify-items-center mb-5 border border-dark p-5 rounded"
                 style={{
                     display: 'flex',
                     justifyContent: 'space-around',
@@ -38,10 +38,8 @@ const AddTodo = (props) => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-                <button
-                    className="btn btn-primary"
-                    style={{ marginLeft: '25px', marginRight: '10px' }}
-                >
+                <input type="datetime-local" className="form-control mt-3" />
+                <button className="btn btn-primary w-25 mt-3">
                     <FaPlus />
                 </button>
             </div>

@@ -25,7 +25,7 @@ const App = () => {
     const [todos, setTodos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorFetching, setErrorFetching] = useState(null);
-    const [toggleAdd, setToggleAdd] = useState(false);
+    const [toggleAdd, setToggleAdd] = useState(true);
     useEffect(() => {
         const setData = async () => {
             const data = await BACKEND_API.index(
