@@ -1,4 +1,7 @@
 import React from 'react';
+import TimeAgo from 'react-timeago';
+
+import { FaBell, FaBellSlash } from 'react-icons/fa';
 
 const Todo = (props) => {
     return (
@@ -41,7 +44,22 @@ const Todo = (props) => {
                         >
                             {props.todo.title}
                         </div>
-                        {/* <div className="widget-subheading">By CEO</div> */}
+                        <div className="widget-subheading">
+                            {props.todo.reminder != null ? (
+                                <FaBell style={{ marginRight: '5px' }} />
+                            ) : (
+                                <FaBellSlash
+                                    style={{ marginRight: '5px', color: 'red' }}
+                                />
+                            )}
+                            <TimeAgo
+                                date={props.todo.reminder}
+                                onChange={(e) =>
+                                    console.log(e.target.outerText)
+                                }
+                                onTimeUpdate={(e) => console.log('Happening')}
+                            />
+                        </div>
                     </div>
 
                     <div className="widget-content-right">

@@ -24,7 +24,7 @@ const AddTodo = (props) => {
     return (
         <form onSubmit={handleCreateTodo}>
             <div
-                className="form-group d-flex flex-column align-items-end justify-items-center mb-5 border border-dark p-5 rounded"
+                className="form-group d-flex flex-column align-items-end justify-items-center mb-5 border border-primary p-5 rounded"
                 style={{
                     display: 'flex',
                     justifyContent: 'space-around',
@@ -38,7 +38,11 @@ const AddTodo = (props) => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-                <input type="datetime-local" className="form-control mt-3" />
+                <input
+                    type="datetime-local"
+                    className="form-control mt-3"
+                    onChange={(e) => setReminder(e.target.value)}
+                />
                 <button className="btn btn-primary w-25 mt-3">
                     <FaPlus />
                 </button>

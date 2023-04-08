@@ -25,7 +25,7 @@ const App = () => {
     const [todos, setTodos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorFetching, setErrorFetching] = useState(null);
-    const [toggleAdd, setToggleAdd] = useState(true);
+    const [toggleAdd, setToggleAdd] = useState(false);
     useEffect(() => {
         const setData = async () => {
             const data = await BACKEND_API.index(
@@ -50,6 +50,7 @@ const App = () => {
         );
         NotificationManager.success('Todo Created!', 'Success!', 2000);
         if (newTodo) {
+            console.log(newTodo);
             setTodos([...todos, newTodo]);
         } else {
             NotificationManager.error('Failed to create todo', 'Error!', 2000);
