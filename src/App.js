@@ -10,6 +10,7 @@ import { FaPlus, FaTimes } from 'react-icons/fa';
 //*React Library and related
 import { useEffect, useState } from 'react';
 import 'react-notifications/lib/notifications.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 //*React Notification
 import {
@@ -20,6 +21,7 @@ import {
 import { ClapSpinner } from 'react-spinners-kit';
 //*Custom functions
 import BACKEND_API from '../src/components/BACKEND_API';
+import Filter from './components/Filter';
 
 const App = () => {
     const [todos, setTodos] = useState([]);
@@ -37,6 +39,15 @@ const App = () => {
         setData();
     }, []);
 
+    const handleFilterAndSort = async (requestOption) => {
+        const data = await BACKEND_API.index(
+            setErrorFetching,
+            setIsLoading,
+            requestOption
+        );
+        setTodos(data);
+    };
+
     /**
      * @param {Object} todo
      * @desc create a todo passed from AddTask Component
@@ -50,7 +61,6 @@ const App = () => {
         );
         NotificationManager.success('Todo Created!', 'Success!', 2000);
         if (newTodo) {
-            console.log(newTodo);
             setTodos([...todos, newTodo]);
         } else {
             NotificationManager.error('Failed to create todo', 'Error!', 2000);
@@ -157,6 +167,7 @@ const App = () => {
                         handleSearch={handleSearch}
                         handleEmptySeachKey={handleEmptySeachKey}
                     />
+                    <Filter handleFilterAndSort={handleFilterAndSort} />
                     {!errorFetching && isLoading && (
                         <div style={{ alignSelf: 'center', padding: '20px' }}>
                             <ClapSpinner
@@ -166,12 +177,15 @@ const App = () => {
                             />
                         </div>
                     )}
+
                     {!errorFetching && !isLoading && (
-                        <Todos
-                            todos={todos}
-                            deleteTask={handleDeleteTask}
-                            toggleCompleted={handleToggleCompleted}
-                        />
+                        <>
+                            <Todos
+                                todos={todos}
+                                deleteTask={handleDeleteTask}
+                                toggleCompleted={handleToggleCompleted}
+                            />
+                        </>
                     )}
 
                     {errorFetching && (

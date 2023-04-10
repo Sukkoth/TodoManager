@@ -1,9 +1,9 @@
 const BASE_URL = 'http://localhost:4500/api/v1/todos';
-exports.index = async (setErrorFetching, setIsLoading) => {
+exports.index = async (setErrorFetching, setIsLoading, requestQuery = '') => {
     setErrorFetching('');
     setIsLoading(true);
     try {
-        const response = await fetch(BASE_URL);
+        const response = await fetch(BASE_URL + requestQuery);
         if (!response.ok) throw new Error('Failed to fetch data');
         const data = await response.json();
         setErrorFetching(null);
@@ -75,7 +75,7 @@ exports.delete = async (setErrorFetching, setIsLoading, todoId) => {
 };
 
 exports.update = async (setErrorFetching, setIsLoading, todo) => {
-    setIsLoading(true);
+    // setIsLoading(true);
     const requestObject = {
         method: 'PATCH',
         headers: {
