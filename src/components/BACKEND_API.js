@@ -31,8 +31,7 @@ exports.search = async (setErrorFetching, setIsLoading, searchKey) => {
     }
 };
 
-exports.store = async (setErrorFetching, setIsLoading, todo) => {
-    setIsLoading(true);
+exports.store = async (setErrorCreating, todo) => {
     const requestObject = {
         method: 'POST',
         headers: {
@@ -44,12 +43,10 @@ exports.store = async (setErrorFetching, setIsLoading, todo) => {
         const response = await fetch(BASE_URL, requestObject);
         if (!response.ok) throw new Error('Failed to fetch data');
         const data = await response.json();
-        setErrorFetching(null);
+        setErrorCreating(null);
         return data.data.todo;
     } catch (error) {
-        setErrorFetching(error.message);
-    } finally {
-        setIsLoading(false);
+        setErrorCreating(error.message);
     }
 };
 

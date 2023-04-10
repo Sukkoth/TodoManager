@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
 import { NotificationManager } from 'react-notifications';
+import BACKEND_API from './BACKEND_API';
 
 const AddTodo = (props) => {
     const [title, setTitle] = useState('');
     const [reminder, setReminder] = useState(null);
+    const [errorCreating, setErrorCreating] = useState('');
+
+    /**
+     * @param {Object} todo
+     * @desc create a todo passed from AddTask Component
+     * @triggeredBy {ReactComponent} AddTodo
+     */
+    const createTodo = async (todo) => {
+        const newTodo = await BACKEND_API.store(setErrorCreating, todo);
+        NotificationManager.success('Todo Created!', 'Success!', 2000);
+        // if (newTodo) {
+        //     setTodos([...todos, newTodo]);
+        // } else {
+        //     NotificationManager.error('Failed to create todo', 'Error!', 2000);
+        // }
+    };
 
     const handleCreateTodo = (e) => {
         e.preventDefault();
@@ -18,7 +36,7 @@ const AddTodo = (props) => {
             completed: false,
         };
 
-        props.createTodo(task);
+        createTodo(task);
         setTitle('');
     };
     return (
@@ -43,7 +61,7 @@ const AddTodo = (props) => {
                     className="form-control mt-3"
                     onChange={(e) => setReminder(e.target.value)}
                 />
-                <button className="btn btn-primary w-25 mt-3">
+                <button className="btn btn-primary mt-3">
                     <FaPlus />
                 </button>
             </div>
