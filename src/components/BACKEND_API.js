@@ -47,6 +47,7 @@ exports.store = async (setErrorCreating, todo) => {
         return data.data.todo;
     } catch (error) {
         setErrorCreating(error.message);
+        return null;
     }
 };
 

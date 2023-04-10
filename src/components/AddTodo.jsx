@@ -16,12 +16,14 @@ const AddTodo = (props) => {
      */
     const createTodo = async (todo) => {
         const newTodo = await BACKEND_API.store(setErrorCreating, todo);
+
+        if (!newTodo)
+            return NotificationManager.error(
+                'Failed to create!',
+                'FAILED!',
+                2000
+            );
         NotificationManager.success('Todo Created!', 'Success!', 2000);
-        // if (newTodo) {
-        //     setTodos([...todos, newTodo]);
-        // } else {
-        //     NotificationManager.error('Failed to create todo', 'Error!', 2000);
-        // }
     };
 
     const handleCreateTodo = (e) => {
