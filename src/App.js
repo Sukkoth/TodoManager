@@ -1,28 +1,16 @@
 //*Components
 import AddTodo from './components/AddTodo';
-
 import Home from './components/Home';
 
-//*Icons start
-import { FaPlus, FaTimes } from 'react-icons/fa';
-
 //*React Library and related
-import { useEffect, useState } from 'react';
 import 'react-notifications/lib/notifications.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 //*React Notification
-import {
-    NotificationContainer,
-    NotificationManager,
-} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 import About from './components/About';
 
-//*Custom functions
-
 const App = () => {
-    const [toggleAdd, setToggleAdd] = useState(false);
-
     return (
         <div className="row d-flex justify-content-center container">
             <div className="col-md-8">
